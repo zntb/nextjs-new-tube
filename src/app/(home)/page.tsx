@@ -9,7 +9,7 @@ interface PageProps {
   }>;
 }
 
-const Page = async ({ searchParams }: PageProps) => {
+const HomePage = async ({ searchParams }: PageProps) => {
   const { categoryId } = await searchParams;
 
   void trpc.categories.getMany.prefetch();
@@ -21,4 +21,4 @@ const Page = async ({ searchParams }: PageProps) => {
   );
 };
 
-export default Page;
+export default HomePage;
