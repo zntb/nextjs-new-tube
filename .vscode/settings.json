@@ -1,5 +1,13 @@
 {
-  "cSpell.words": ["cmdk", "embla", "neondatabase", "sonner", "svix", "vaul"],
+  "cSpell.words": [
+    "cmdk",
+    "embla",
+    "neondatabase",
+    "sonner",
+    "svix",
+    "UPLOADTHING",
+    "vaul"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
