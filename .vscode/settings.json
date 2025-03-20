@@ -6,6 +6,7 @@
     "sonner",
     "svix",
     "UPLOADTHING",
+    "utfs",
     "vaul"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
