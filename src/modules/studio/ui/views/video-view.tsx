@@ -1,10 +1,10 @@
 import { FormSection } from '../sections/form-section';
 
-interface VideoViewProps {
+interface StudioVideoViewProps {
   videoId: string;
 }
 
-export const VideoView = ({ videoId }: VideoViewProps) => {
+export const StudioVideoView = ({ videoId }: StudioVideoViewProps) => {
   return (
     <div className='px-4 pt-2.5 max-w-screen-lg'>
       <FormSection videoId={videoId} />
