@@ -11,7 +11,7 @@ import {
 import { UserInfo } from '@/modules/users/ui/components/user-info';
 import { UserAvatar } from '@/components/user-avatar';
 import { VideoMenu } from './video-menu';
-import { VideoThumbnail } from './video-thumbnail';
+import { VideoThumbnail, VideoThumbnailSkeleton } from './video-thumbnail';
 import { VideoGetManyOutput } from '../../types';
 
 const videoRowCardVariants = cva('group flex min-w-0', {
@@ -43,16 +43,35 @@ interface VideoRowCardProps extends VariantProps<typeof videoRowCardVariants> {
   onRemove?: () => void;
 }
 
-export const VideoRowCardSkeleton = () => {
+export const VideoRowCardSkeleton = ({
+  size,
+}: VariantProps<typeof videoRowCardVariants>) => {
   return (
-    <div className={videoRowCardVariants({ size: 'default' })}>
-      <div className={thumbnailVariants({ size: 'default' })}>
-        <Skeleton className='h-full w-full' />
+    <div className={videoRowCardVariants({ size })}>
+      {/* Thumbnail skeleton */}
+      <div className={thumbnailVariants({ size })}>
+        <VideoThumbnailSkeleton />
       </div>
-      <div className='flex-1 space-y-1.5'>
-        <Skeleton className='h-4 w-1/2' />
-        <Skeleton className='h-4 w-1/3' />
-        <Skeleton className='h-4 w-1/4' />
+
+      {/* Info skeleton */}
+      <div className='flex-1 min-w-0'>
+        <div className='flex justify-between gap-x-2'>
+          <div className='flex-1 min-w-0'>
+            <Skeleton
+              className={cn('h-5 w-[40%]', size === 'compact' && 'h-4 w-[40%]')}
+            />
+            {size === 'default' && (
+              <>
+                <Skeleton className='h-4 w-[20%] mt-1' />
+                <div className='flex items-center gap-2 my-2'>
+                  <Skeleton className='size-8 rounded-full' />
+                  <Skeleton className='h-4 w-24' />
+                </div>
+              </>
+            )}
+            {size === 'compact' && <Skeleton className='h-4 w-[50%] mt-1' />}
+          </div>
+        </div>
       </div>
     </div>
   );
