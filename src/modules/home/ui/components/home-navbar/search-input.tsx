@@ -18,7 +18,7 @@ const SearchInput = () => {
 
     url.searchParams.set('query', encodeURIComponent(newQuery));
 
-    if (newQuery) {
+    if (newQuery === '') {
       url.searchParams.delete('query');
     }
 
