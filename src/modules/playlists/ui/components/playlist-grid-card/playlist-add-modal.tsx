@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { DEFAULT_LIMIT } from '@/constants';
 import { trpc } from '@/trpc/client';
 import { Loader2Icon, SquareCheckIcon, SquareIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface PlaylistAddModalProps {
   open: boolean;
@@ -16,7 +17,7 @@ export const PlaylistAddModal = ({
   onOpenChange,
   videoId,
 }: PlaylistAddModalProps) => {
-  // const utils = trpc.useUtils();
+  const utils = trpc.useUtils();
   const {
     data: playlists,
     isLoading,
@@ -34,10 +35,29 @@ export const PlaylistAddModal = ({
     },
   );
 
-  // const handleOpenChange = (newOpen: boolean) => {
-  //   utils.playlists.getManyForVideo.reset();
-  //   onOpenChange(newOpen);
-  // };
+  const addVideo = trpc.playlists.addVideo.useMutation({
+    onSuccess: () => {
+      toast.success('Video added to playlist');
+      utils.playlists.getMany.invalidate();
+      utils.playlists.getManyForVideo.invalidate({ videoId });
+      // TODO: Invalidate playlists.getOne
+    },
+    onError: () => {
+      toast.error('Something went wrong');
+    },
+  });
+
+  const removeVideo = trpc.playlists.removeVideo.useMutation({
+    onSuccess: () => {
+      toast.success('Video removed from playlist');
+      utils.playlists.getMany.invalidate();
+      utils.playlists.getManyForVideo.invalidate({ videoId });
+      // TODO: Invalidate playlists.getOne
+    },
+    onError: () => {
+      toast.error('Something went wrong');
+    },
+  });
 
   return (
     <ResponsiveModal
@@ -60,6 +80,14 @@ export const PlaylistAddModal = ({
                 variant='ghost'
                 size='lg'
                 className='w-full justify-start px-2 [&_svg]:size-5'
+                onClick={() => {
+                  if (playlist.containsVideo) {
+                    removeVideo.mutate({ playlistId: playlist.id, videoId });
+                  } else {
+                    addVideo.mutate({ playlistId: playlist.id, videoId });
+                  }
+                }}
+                disabled={addVideo.isPending || removeVideo.isPending}
               >
                 {playlist.containsVideo ? (
                   <SquareCheckIcon className='mr-2' />
