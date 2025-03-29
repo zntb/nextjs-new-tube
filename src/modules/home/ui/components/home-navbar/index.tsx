@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AuthButton } from '@/modules/auth/ui/components/auth-button';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import SearchInput from './search-input';
+import { SearchInput } from './search-input';
 
 export const HomeNavbar = () => {
   return (
