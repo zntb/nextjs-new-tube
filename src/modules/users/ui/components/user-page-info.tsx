@@ -79,7 +79,9 @@ export const UserPageInfo = ({ user }: UserPageInfoProps) => {
             className='w-full rounded-full mt-3'
             asChild
           >
-            <Link href='/studio'>Go to studio</Link>
+            <Link prefetch href='/studio'>
+              Go to studio
+            </Link>
           </Button>
         ) : (
           <SubscriptionButton
@@ -115,7 +117,9 @@ export const UserPageInfo = ({ user }: UserPageInfoProps) => {
           </div>
           {userId === user.clerkId ? (
             <Button variant='secondary' className='rounded-full mt-3' asChild>
-              <Link href='/studio'>Go to studio</Link>
+              <Link prefetch href='/studio'>
+                Go to studio
+              </Link>
             </Button>
           ) : (
             <SubscriptionButton
