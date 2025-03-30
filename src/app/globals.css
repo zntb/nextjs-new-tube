@@ -86,3 +86,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.navbar-container {
+  @apply bg-white dark:bg-zinc-900;
+}
+
+.search-button {
+  @apply bg-gray-100 dark:bg-gray-700;
+}
+
+.search-button:hover {
+  @apply bg-gray-200 dark:bg-gray-600;
+}
+
+.studio-card {
+  @apply bg-[#F9F9F9] dark:bg-[#1E1E1E];
+}
+
+.user-name {
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.user-name-tooltip {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.user-name-tooltip p {
+  @apply text-gray-600 dark:text-gray-400;
+}

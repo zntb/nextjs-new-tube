@@ -99,7 +99,7 @@ const FormSectionSkeleton = () => {
           </div>
         </div>
         <div className='flex flex-col gap-y-8 lg:col-span-2'>
-          <div className='flex flex-col gap-4 bg-[#F9F9F9] rounded-xl overflow-hidden'>
+          <div className='studio-card flex flex-col gap-4 rounded-xl overflow-hidden'>
             <Skeleton className='aspect-video' />
             <div className='p-4 space-x-6'>
               <div className='space-y-2'>
@@ -436,7 +436,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
               />
             </div>
             <div className='flex flex-col gap-y-8 lg:col-span-2'>
-              <div className='flex flex-col gap-4 bg-[#F9F9F9] rounded-xl overflow-hidden h-fit'>
+              <div className='studio-card flex flex-col gap-4 rounded-xl overflow-hidden h-fit'>
                 <div className='relative aspect-video overflow-hidden'>
                   <VideoPlayer
                     playbackId={video.muxPlaybackId}
