@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
 import { TRPCProvider } from '@/trpc/client';
@@ -21,10 +22,17 @@ export default function RootLayout({
     <ClerkProvider afterSignOutUrl='/'>
       <html lang='en' suppressHydrationWarning>
         <body className={inter.className}>
-          <TRPCProvider>
-            <Toaster />
-            {children}
-          </TRPCProvider>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='system'
+            enableSystem
+            disableTransitionOnChange
+          >
+            <TRPCProvider>
+              <Toaster />
+              {children}
+            </TRPCProvider>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
