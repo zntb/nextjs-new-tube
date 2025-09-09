@@ -173,7 +173,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ## 📄 License
 
-Add a `LICENSE` file to declare usage terms (MIT is common for starters). If one already exists in the repo, that file is the source of truth.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ---
 
