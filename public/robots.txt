@@ -1,0 +1,17 @@
+# Robots.txt for NewTube
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nextjs-new-tube.vercel.app/sitemap.xml
+
+# Disallow crawling of admin pages
+Disallow: /api/
+Disallow: /_next/
+Disallow: /studio/
+
+# Allow crawling of main content
+Allow: /videos/
+Allow: /users/
+Allow: /playlists/
+Allow: /categories/
