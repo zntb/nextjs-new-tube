@@ -24,10 +24,8 @@ interface CommentFormProps {
   variant?: 'comment' | 'reply';
 }
 
-// interface CommentFormValues {
-//   videoId: string;
-//   value: string;
-// }
+const commentFormSchema = commentInsertSchema.omit({ userId: true });
+type CommentFormValues = z.infer<typeof commentFormSchema>;
 
 export const CommentForm = ({
   videoId,
@@ -60,10 +58,8 @@ export const CommentForm = ({
     },
   });
 
-  const form = useForm<z.infer<typeof commentInsertSchema>>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    resolver: zodResolver(commentInsertSchema.omit({ userId: true })),
+  const form = useForm<CommentFormValues>({
+    resolver: zodResolver(commentFormSchema),
     defaultValues: {
       parentId: parentId,
       videoId: videoId,
@@ -71,21 +67,9 @@ export const CommentForm = ({
     },
   });
 
-  //   const form = useForm<CommentFormValues>({
-  //     resolver: zodResolver(commentInsertSchema.omit({ userId: true })),
-  //     defaultValues: {
-  //       videoId,
-  //       value: '',
-  //     },
-  //   });
-
-  const handleSubmit = (values: z.infer<typeof commentInsertSchema>) => {
+  const handleSubmit = (values: CommentFormValues) => {
     create.mutate(values);
   };
-
-  //   const handleSubmit = (values: CommentFormValues) => {
-  //     create.mutate(values);
-  //   };
 
   const handleCancel = () => {
     form.reset();
